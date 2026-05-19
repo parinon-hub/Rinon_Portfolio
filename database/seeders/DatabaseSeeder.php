@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->command->info('DB Connection: ' . config('database.default'));
         $this->command->info('Seeding Admin User...');
         User::updateOrCreate(
             ['email' => 'admin@example.com'],

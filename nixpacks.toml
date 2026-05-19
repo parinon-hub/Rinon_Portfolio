@@ -8,7 +8,9 @@ cmds = [
 
 [phases.start]
 cmds = [
-    "php artisan migrate --force --seed",
+    "php artisan migrate --force",
+    "php artisan db:seed --force",
+    "php artisan storage:link || true",
     "php artisan optimize",
     "..."
 ]

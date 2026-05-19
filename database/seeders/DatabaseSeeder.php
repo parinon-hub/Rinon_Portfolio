@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->command->info('Seeding Admin User...');
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        $this->command->info('Seeding Page Content...');
         $contents = [
             'site_name' => 'Patrick',
             'site_title' => 'Patrick Riñon — Portfolio',
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             PageContent::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
+        $this->command->info('Seeding Projects...');
         if (Project::count() == 0) {
             Project::create([
                 'title' => 'Novu — SaaS Dashboard',
@@ -68,23 +71,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        if (Post::count() == 0) {
-            Post::create([
-                'title' => 'Why I ditched heavy CSS frameworks for Tailwind',
-                'summary' => 'After years of fighting specificity wars, here\'s what finally convinced me to make the switch.',
-                'content' => 'Full article content here...',
-                'image' => 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80',
-                'category' => 'Design',
-            ]);
-        }
-
-        if (Testimonial::count() == 0) {
-            Testimonial::create([
-                'name' => 'Sarah Müller',
-                'role' => 'CPO, Novu',
-                'feedback' => 'Eliott delivered our redesign in record time and the quality blew us away. Our conversion rate jumped 28% in the first month. Absolutely recommend.',
-                'image' => 'https://i.pravatar.cc/80?img=11',
-            ]);
-        }
+        $this->command->info('Database seeding completed successfully!');
     }
 }
